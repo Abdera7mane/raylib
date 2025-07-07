@@ -1607,9 +1607,10 @@ void PollInputEvents(void)
                 if (CORE.Input.Keyboard.charPressedQueueCount < MAX_CHAR_PRESSED_QUEUE)
                 {
                     // Add character (codepoint) to the queue
+                    unsigned int codepoint;
                     #if defined(PLATFORM_DESKTOP_SDL3)
                     unsigned int textLen = strlen(event.text.text);
-                    unsigned int codepoint = (unsigned int)SDL_StepUTF8(&event.text.text, textLen);
+                    codepoint = (unsigned int)SDL_StepUTF8(&event.text.text, textLen);
                     #else
                     int codepointSize = 0;
                     codepoint = GetCodepointNextSDL(event.text.text, &codepointSize);
